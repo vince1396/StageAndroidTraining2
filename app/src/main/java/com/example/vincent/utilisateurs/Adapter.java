@@ -1,6 +1,6 @@
 package com.example.vincent.utilisateurs;
 
-import android.app.Activity;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -15,13 +15,11 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private ArrayList<User> personne;
-    MyViewHolder holder;
 
     public Adapter(ArrayList<User> pPersonne){
 
         this.personne = pPersonne;
     }
-
 
     @Override
     public int getItemCount() {
@@ -44,10 +42,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         String nom = personne.get(position).getNom();
         String email = personne.get(position).getEmail();
         String img = personne.get(position).getImg();
-        holder.display(personne.get(position));
-        holder.itemView.getContext();
+        holder.display(personne.get(position), holder);
     }
-
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -55,7 +51,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         private final TextView name;
         private final TextView email;
         private final ImageView img;
-        private Pair<String, String> currentPair;
+        //private Pair<String, String> currentPair;
 
         public MyViewHolder(final View itemView) {
 
@@ -77,11 +73,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             }); */
         }
 
-        public void display(User pUser) {
+        public void display(User pUser, MyViewHolder holder) {
 
             name.setText(pUser.getNom());
             email.setText(pUser.getEmail());
-            Glide.with(holder.itemView.getContext()).load(pUser.getImg()).into(img);
+            Uri url = Uri.parse(pUser.getImg());
+            Glide.with(holder.itemView.getContext()).load(url).into(img);
         }
     }
 }

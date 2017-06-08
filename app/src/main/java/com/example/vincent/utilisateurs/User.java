@@ -9,7 +9,7 @@ public class User {
 
         this.nom = "";
         this.email = "";
-        this.nom = "";
+        this.img = "";
     }
 
     public String toString(User pUser){
@@ -46,6 +46,6 @@ public class User {
 
     public void setImg(String pImg){
 
-        this.email = pImg;
+        this.img = pImg;
     }
 }
