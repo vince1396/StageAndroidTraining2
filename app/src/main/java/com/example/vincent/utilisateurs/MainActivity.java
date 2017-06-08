@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static boolean isValidEmail(CharSequence target) {
-        if(target == null) {
+        if(null == target) {
             return false;
         }
         else {

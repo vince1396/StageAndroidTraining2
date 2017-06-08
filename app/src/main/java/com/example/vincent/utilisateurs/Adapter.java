@@ -39,9 +39,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        String nom = personne.get(position).getNom();
-        String email = personne.get(position).getEmail();
-        String img = personne.get(position).getImg();
         holder.display(personne.get(position), holder);
     }
 
@@ -78,7 +75,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             name.setText(pUser.getNom());
             email.setText(pUser.getEmail());
             Uri url = Uri.parse(pUser.getImg());
-            Glide.with(holder.itemView.getContext()).load(url).into(img);
+            Glide.with(holder.img.getContext()).load(url).into(img);
         }
     }
 }
