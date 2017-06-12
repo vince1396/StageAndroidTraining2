@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.name) EditText name;
     @BindView(R.id.email) EditText email;
     @BindView(R.id.urlimg) EditText urlimg;
+    @BindView(R.id.form) LinearLayout form;
 
     @BindView(R.id.rvUser) RecyclerView rvUser;
 
@@ -36,16 +38,15 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         rvUser.setLayoutManager(new LinearLayoutManager(this));
         rvUser.setAdapter(new Adapter(alRep));
+        create.setText(getString(R.string.create));
+        display.setText(getString(R.string.display));
     }
 
     @OnClick(R.id.create)
     public void onClickCreate() {
 
-        name.setVisibility(View.VISIBLE);
-        email.setVisibility(View.VISIBLE);
-        urlimg.setVisibility(View.VISIBLE);
+        form.setVisibility(View.VISIBLE);
         create.setVisibility(View.INVISIBLE);
-        valider.setVisibility(View.VISIBLE);
         rvUser.setVisibility(View.INVISIBLE);
         display.setVisibility(View.INVISIBLE);
     }
@@ -53,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.valider)
     public void onClickValider(){
 
-        if(name.getText().toString().equals("") | email.getText().toString().equals(""))
+        if(name.getText().toString().equals("") || email.getText().toString().equals(""))
         {
-            Toast.makeText(MainActivity.this, "Veuillez remplir les champs", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.empty), Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -63,16 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (!isValidEmail((pEmail)))
             {
-                Toast.makeText(MainActivity.this, "Email incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.emailError), Toast.LENGTH_SHORT).show();
                 email.setText("");
             }
             else
             {
+                form.setVisibility(View.INVISIBLE);
                 create.setVisibility(View.VISIBLE);
-                valider.setVisibility(View.INVISIBLE);
-                name.setVisibility(View.INVISIBLE);
-                email.setVisibility(View.INVISIBLE);
-                urlimg.setVisibility(View.INVISIBLE);
                 display.setVisibility(View.VISIBLE);
 
                 String pNom = name.getText().toString();
@@ -89,6 +87,15 @@ public class MainActivity extends AppCompatActivity {
                 alRep.add(user);
             }
         }
+    }
+
+    @OnClick(R.id.back)
+    public void onClickBack(){
+
+        form.setVisibility(View.INVISIBLE);
+        create.setVisibility(View.VISIBLE);
+        rvUser.setVisibility(View.VISIBLE);
+        display.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.display)

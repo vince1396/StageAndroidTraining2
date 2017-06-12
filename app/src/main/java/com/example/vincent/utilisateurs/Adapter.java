@@ -74,7 +74,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             name.setText(pUser.getNom());
             email.setText(pUser.getEmail());
             Uri url = Uri.parse(pUser.getImg());
-            Glide.with(holder.img.getContext()).load(url).into(img);
+            Glide
+                    .with(holder.img.getContext())
+                    .load(url)
+                    .placeholder(R.drawable.img_default)
+                    .into(img);
         }
     }
 }

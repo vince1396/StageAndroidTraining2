@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Utilisateurs</string>
+    <string name="create">Créer</string>
+    <string name="display">Afficher</string>
+    <string name="valider">Valider</string>
+    <string name="name">Nom</string>
+    <string name="email">Email</string>
+    <string name="urlimg">URL image</string>
+    <string name="empty">Veuillez remplir les champs</string>
+    <string name="emailError">Email invalide</string>
+    <string name="back">Retour</string>
 </resources>

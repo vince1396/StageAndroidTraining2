@@ -10,87 +10,126 @@
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Créer"
+        android:text="@string/create"
         tools:layout_constraintBottom_creator="1"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="18dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginLeft="16dp"
+        android:background="#3498db"
+        android:textColor="#ecf0f1"
+        />
 
     <Button
         android:id="@+id/display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Afficher"
+        android:text="@string/display"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="9dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="18dp"
-        android:layout_marginRight="9dp" />
+        android:layout_marginRight="9dp"
+        android:background="#3498db"
+        android:textColor="#ecf0f1"
+        />
 
-    <EditText
-        android:id="@+id/name"
+    <LinearLayout
+        android:id="@+id/form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Nom"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:visibility="invisible"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintRight_toRightOf="@+id/email"
-        android:layout_marginTop="77dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="1dp" />
+        app:layout_constraintRight_toRightOf="@+id/rvUser"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Email"
-        android:visibility="invisible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="27dp"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/name"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintRight_toRightOf="@+id/email"
+            android:layout_marginTop="77dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="1dp" />
 
-    <EditText
-        android:id="@+id/urlimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="URL image"
-        android:visibility="invisible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/email"
-        android:layout_marginTop="26dp"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/email" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/email"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="27dp"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
-    <Button
-        android:id="@+id/valider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Valider"
-        android:visibility="invisible"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="2dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/create"
-        app:layout_constraintTop_toTopOf="@+id/create" />
+        <EditText
+            android:id="@+id/urlimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/urlimg"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintRight_creator="1"
+            app:layout_constraintRight_toRightOf="@+id/email"
+            android:layout_marginTop="26dp"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="@+id/email" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/valider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/valider"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="328dp"
+            android:layout_marginTop="30dp"
+            android:background="#3498db"
+            android:textColor="#ecf0f1"
+            android:layout_marginRight="20dp"
+            />
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back"
+                tools:layout_editor_absoluteX="148dp"
+                tools:layout_editor_absoluteY="328dp"
+                android:layout_marginTop="30dp"
+                android:background="#e74c3c"
+                android:textColor="#ecf0f1"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvUser"
@@ -99,11 +138,10 @@
         android:visibility="invisible"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/urlimg"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/urlimg"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/form" />
+
 
 </android.support.constraint.ConstraintLayout>
