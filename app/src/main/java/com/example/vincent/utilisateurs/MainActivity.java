@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rvUser) RecyclerView rvUser;
 
     private ArrayList<User> alRep = new ArrayList<>();
+    private boolean ifForm = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         create.setVisibility(View.INVISIBLE);
         rvUser.setVisibility(View.INVISIBLE);
         display.setVisibility(View.INVISIBLE);
+
+        ifForm = true;
     }
 
     @OnClick(R.id.valider)
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 form.setVisibility(View.INVISIBLE);
                 create.setVisibility(View.VISIBLE);
                 display.setVisibility(View.VISIBLE);
+                ifForm = false;
 
                 String pNom = name.getText().toString();
                 String pUrl = urlimg.getText().toString();
@@ -89,15 +93,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.back)
-    public void onClickBack(){
-
-        form.setVisibility(View.INVISIBLE);
-        create.setVisibility(View.VISIBLE);
-        rvUser.setVisibility(View.VISIBLE);
-        display.setVisibility(View.VISIBLE);
-    }
-
     @OnClick(R.id.display)
     public void onClickDisplay(){
 
@@ -110,6 +105,23 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        if(ifForm)
+        {
+            form.setVisibility(View.INVISIBLE);
+            create.setVisibility(View.VISIBLE);
+            rvUser.setVisibility(View.VISIBLE);
+            display.setVisibility(View.VISIBLE);
+            ifForm = false;
+        }
+        else
+        {
+            super.onBackPressed();
         }
     }
 }
