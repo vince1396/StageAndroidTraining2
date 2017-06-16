@@ -77,7 +77,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             Glide
                     .with(holder.img.getContext())
                     .load(url)
-                    .placeholder(R.drawable.img_default)
                     .into(img);
         }
     }

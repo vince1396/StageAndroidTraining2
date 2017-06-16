@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.vincent.utilisateurs.MainActivity">
 
-    <Button
-        android:id="@+id/create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        android:background="#3498db"
-        android:textColor="#ecf0f1"
-        />
 
-    <Button
-        android:id="@+id/display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/display"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="9dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="18dp"
-        android:layout_marginRight="9dp"
-        android:background="#3498db"
-        android:textColor="#ecf0f1"
-        />
+
 
     <LinearLayout
         android:id="@+id/form"
@@ -44,12 +15,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:paddingBottom="20dp"
         android:visibility="invisible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="@+id/rvUser"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_centerInParent="true">
+
 
         <EditText
             android:id="@+id/name"
@@ -58,13 +27,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/name"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintRight_creator="1"
-            android:layout_marginEnd="1dp"
-            app:layout_constraintRight_toRightOf="@+id/email"
-            android:layout_marginTop="77dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="1dp" />
+             />
 
         <EditText
             android:id="@+id/email"
@@ -72,14 +35,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="@string/email"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintRight_creator="1"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="27dp"
-            app:layout_constraintTop_toBottomOf="@+id/name"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:hint="@string/email" />
 
         <EditText
             android:id="@+id/urlimg"
@@ -88,13 +44,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/urlimg"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintRight_creator="1"
-            app:layout_constraintRight_toRightOf="@+id/email"
-            android:layout_marginTop="26dp"
-            app:layout_constraintTop_toBottomOf="@+id/email"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toLeftOf="@+id/email" />
+             />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -107,8 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/valider"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="328dp"
             android:layout_marginTop="30dp"
             android:background="#3498db"
             android:textColor="#ecf0f1"
@@ -121,15 +69,43 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvUser"
-        android:layout_width="215dp"
-        android:layout_height="360dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/form" />
+
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_buttons"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="16dp"
+            android:background="#3498db"
+            android:textColor="#ecf0f1"
+            />
+
+        <Button
+            android:id="@+id/display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/display"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/create"
+            android:background="#3498db"
+            android:textColor="#ecf0f1"
+            />
+
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
