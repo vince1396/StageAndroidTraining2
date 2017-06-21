@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import java.util.ArrayList;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -25,8 +27,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
     @BindView(R.id.email) EditText email;
     @BindView(R.id.urlimg) EditText urlimg;
     @BindView(R.id.form) LinearLayout form;
-    @BindView(R.id.rvUser)
-    RecyclerView rvUser;
+    @BindView(R.id.rvUser) RecyclerView myRecyclerView;
 
     private ArrayList<User> alRep = new ArrayList<>();
     private boolean ifForm = false;
@@ -35,6 +36,70 @@ public class MainFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        ButterKnife.bind(this, inflater.inflate(R.layout.fragment_main, container, false));
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                form.setVisibility(View.VISIBLE);
+                create.setVisibility(View.INVISIBLE);
+                myRecyclerView.setVisibility(View.INVISIBLE);
+                display.setVisibility(View.INVISIBLE);
+
+                ifForm = true;
+            }
+        });
+
+        display.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myRecyclerView.setVisibility(View.VISIBLE);
+            }
+        });
+
+        valider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(name.getText().toString().equals("") || email.getText().toString().equals(""))
+                {
+                    Toast.makeText(getActivity().getBaseContext(), getString(R.string.empty), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    String pEmail = email.getText().toString();
+
+                    if (!isValidEmail((pEmail)))
+                    {
+                        Toast.makeText(getActivity().getBaseContext(), getString(R.string.emailError), Toast.LENGTH_SHORT).show();
+                        email.setText("");
+                    }
+                    else
+                    {
+                        form.setVisibility(View.INVISIBLE);
+                        create.setVisibility(View.VISIBLE);
+                        display.setVisibility(View.VISIBLE);
+                        ifForm = false;
+
+                        String pNom = name.getText().toString();
+                        String pUrl = urlimg.getText().toString();
+
+                        email.setText("");
+                        name.setText("");
+                        urlimg.setText("");
+
+                        User user = new User();
+                        user.setNom(pNom);
+                        user.setEmail(pEmail);
+                        user.setImg(pUrl);
+                        alRep.add(user);
+                    }
+                }
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -42,20 +107,18 @@ public class MainFragment extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
-
-        rvUser.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
-        rvUser.setAdapter(new Adapter(alRep));
+        myRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        myRecyclerView.setAdapter(new Adapter(alRep));
         create.setText(getString(R.string.create));
         display.setText(getString(R.string.display));
     }
 
-    @OnClick(R.id.create)
+    /*@OnClick(R.id.create)
     public void onClickCreate() {
 
         form.setVisibility(View.VISIBLE);
         create.setVisibility(View.INVISIBLE);
-        rvUser.setVisibility(View.INVISIBLE);
+        myRecyclerView.setVisibility(View.INVISIBLE);
         display.setVisibility(View.INVISIBLE);
 
         ifForm = true;
@@ -64,8 +127,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
     @OnClick(R.id.display)
     public void onClickDisplay(){
 
-        rvUser.setVisibility(View.VISIBLE);
-    }
+        myRecyclerView.setVisibility(View.VISIBLE);
+    }*/
 
     public static boolean isValidEmail(CharSequence target) {
         if(null == target) {
@@ -76,7 +139,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
         }
     }
 
-    @OnClick(R.id.valider)
+    /*@OnClick(R.id.valider)
     public void onClickValider(){
 
         if(name.getText().toString().equals("") || email.getText().toString().equals(""))
@@ -113,7 +176,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 alRep.add(user);
             }
         }
-    }
+    }*/
 
 
 
