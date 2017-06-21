@@ -36,71 +36,9 @@ public class MainFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ButterKnife.bind(this, inflater.inflate(R.layout.fragment_main, container, false));
-
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                form.setVisibility(View.VISIBLE);
-                create.setVisibility(View.INVISIBLE);
-                myRecyclerView.setVisibility(View.INVISIBLE);
-                display.setVisibility(View.INVISIBLE);
-
-                ifForm = true;
-            }
-        });
-
-        display.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                myRecyclerView.setVisibility(View.VISIBLE);
-            }
-        });
-
-        valider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(name.getText().toString().equals("") || email.getText().toString().equals(""))
-                {
-                    Toast.makeText(getActivity().getBaseContext(), getString(R.string.empty), Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    String pEmail = email.getText().toString();
-
-                    if (!isValidEmail((pEmail)))
-                    {
-                        Toast.makeText(getActivity().getBaseContext(), getString(R.string.emailError), Toast.LENGTH_SHORT).show();
-                        email.setText("");
-                    }
-                    else
-                    {
-                        form.setVisibility(View.INVISIBLE);
-                        create.setVisibility(View.VISIBLE);
-                        display.setVisibility(View.VISIBLE);
-                        ifForm = false;
-
-                        String pNom = name.getText().toString();
-                        String pUrl = urlimg.getText().toString();
-
-                        email.setText("");
-                        name.setText("");
-                        urlimg.setText("");
-
-                        User user = new User();
-                        user.setNom(pNom);
-                        user.setEmail(pEmail);
-                        user.setImg(pUrl);
-                        alRep.add(user);
-                    }
-                }
-            }
-        });
-
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -111,9 +49,10 @@ public class MainFragment extends android.support.v4.app.Fragment {
         myRecyclerView.setAdapter(new Adapter(alRep));
         create.setText(getString(R.string.create));
         display.setText(getString(R.string.display));
+        }
     }
 
-    /*@OnClick(R.id.create)
+    @OnClick(R.id.create)
     public void onClickCreate() {
 
         form.setVisibility(View.VISIBLE);
@@ -128,7 +67,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
     public void onClickDisplay(){
 
         myRecyclerView.setVisibility(View.VISIBLE);
-    }*/
+    }
 
     public static boolean isValidEmail(CharSequence target) {
         if(null == target) {
@@ -139,7 +78,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
         }
     }
 
-    /*@OnClick(R.id.valider)
+    @OnClick(R.id.valider)
     public void onClickValider(){
 
         if(name.getText().toString().equals("") || email.getText().toString().equals(""))
@@ -176,24 +115,5 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 alRep.add(user);
             }
         }
-    }*/
-
-
-
-    /*@Override
-    public void onBackPressed(){
-
-        if(ifForm)
-        {
-            form.setVisibility(View.INVISIBLE);
-            create.setVisibility(View.VISIBLE);
-            rvUser.setVisibility(View.VISIBLE);
-            display.setVisibility(View.VISIBLE);
-            ifForm = false;
-        }
-        else
-        {
-            super.onBackPressed();
-        }
-    }*/
+    }
 }
