@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.urlimg) EditText urlimg;
     @BindView(R.id.form) LinearLayout form;
     Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
-    public static ArrayList<User> alRep = new ArrayList<>();
+    private static ArrayList<User> alRep = new ArrayList<>();
     private boolean ifForm = false;
     MainFragment mainFragment = new MainFragment();
 
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mainFragment.refreshList(alRep);
         create.setText(getString(R.string.create));
     }
 
@@ -96,4 +95,10 @@ public class MainActivity extends AppCompatActivity {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
+
+    public static ArrayList<User> refreshList(){
+
+        return alRep;
+    }
 }
+

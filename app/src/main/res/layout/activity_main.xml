@@ -15,7 +15,8 @@ tools:context="com.example.vincent.utilisateurs.MainActivity">
     android:visibility="invisible"
     android:layout_above="@+id/listFragment"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    >
 
 
     <EditText
@@ -57,7 +58,7 @@ tools:context="com.example.vincent.utilisateurs.MainActivity">
     <fragment
         android:id="@+id/listFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:name="com.example.vincent.utilisateurs.MainFragment"
         tools:layout="@layout/fragment_main"
         android:layout_marginBottom="23dp"
