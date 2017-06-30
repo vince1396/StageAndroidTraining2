@@ -7,6 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -14,6 +19,7 @@ import butterknife.ButterKnife;
 public class MainFragment extends android.support.v4.app.Fragment {
 
     @BindView(R.id.rvUser) RecyclerView myRecyclerView;
+    ArrayList<User> list = new ArrayList<User>();
 
     @Nullable
     @Override
@@ -21,8 +27,9 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        MyBus.getBus().register(this);
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        myRecyclerView.setAdapter(new Adapter(MainActivity.refreshList()));
+        myRecyclerView.setAdapter(new Adapter(list));
         return view;
     }
 
@@ -32,4 +39,9 @@ public class MainFragment extends android.support.v4.app.Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Subscribe
+    public void onEvent(Refresh refresh){
+
+        list = refresh.getList();
+    }
 }

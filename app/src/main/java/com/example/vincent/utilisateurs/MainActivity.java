@@ -1,6 +1,5 @@
 package com.example.vincent.utilisateurs;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.email) EditText email;
     @BindView(R.id.urlimg) EditText urlimg;
     @BindView(R.id.form) LinearLayout form;
-    Fragment listFragment = (Fragment) getSupportFragmentManager().findFragmentById(R.id.listFragment);
-    private static ArrayList<User> alRep = new ArrayList<>();
+
+    private ArrayList<User> alRep = new ArrayList<>();
     private boolean ifForm = false;
-    MainFragment mainFragment = new MainFragment();
 
     //======================================== ON CREATE ===========================================
     @Override
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         ifForm = true;
     }
-
 
     //===================================== CLICK SUR VALIDER ======================================
     @OnClick(R.id.valider)
@@ -82,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 user.setEmail(pEmail);
                 user.setImg(pUrl);
                 alRep.add(user);
+                MyBus.getBus().post(new Refresh(alRep));
             }
         }
     }
@@ -94,11 +92,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
-    }
-
-    public static ArrayList<User> refreshList(){
-
-        return alRep;
     }
 }
 
